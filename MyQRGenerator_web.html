@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>สร้าง QR Code จากลิงก์</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>สร้าง QR Code จากลิงก์</h2>
+  <input type="text" id="urlInput" placeholder="กรอกลิงก์ที่นี่">
+  <br>
+  <button onclick="generateQRCode()">สร้าง QR Code</button>
+  <div id="qrcode"></div>
+
+  <script>
+    function generateQRCode() {
+      const url = document.getElementById("urlInput").value.trim();
+      const qrDiv = document.getElementById("qrcode");
+      qrDiv.innerHTML = ""; // ล้างของเก่าทิ้งก่อนสร้างใหม่
+
+      if (!url) {
+        alert("กรุณาใส่ลิงก์ก่อน");
+        return;
+      }
+
+      new QRCode(qrDiv, {
+        text: url,
+        width: 256,
+        height: 256
+      });
+    }
+  </script>
+</body>
+</html>
